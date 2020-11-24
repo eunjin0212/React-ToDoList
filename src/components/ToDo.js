@@ -106,7 +106,9 @@ export default ({ text, id, isCompleted }) => {
         {!isCompleted ? (
           <>
             <div>
-              <Btn onClick={edit}>Edit</Btn>
+              <Btn onClick={() => dispatch({ type: EDIT, payload: id })}>
+                Edit
+              </Btn>
               <Btn onClick={() => dispatch({ type: DEL, payload: id })}>X</Btn>
               <Btn onClick={() => dispatch({ type: COMPLETE, payload: id })}>
                 V
