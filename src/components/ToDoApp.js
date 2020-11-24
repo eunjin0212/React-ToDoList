@@ -7,18 +7,11 @@ import Title from "./Title"; //Wrapper
 import Progress from "./Progress";
 import styled from "styled-components";
 
-const Lists = styled.div`
+const Lists = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-items: center;
-  @media (max-width: 768px) {
-    width: 70%;
-    grid-auto-flow: column;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, 1fr);
-    justify-items: start;
-  }
-  @media (max-width: 414px) {
-    width: 95%;
-  }
 `;
 
 function App() {
@@ -36,12 +29,7 @@ function App() {
           </List>
           <List title={completed.length !== 0 ? "Completed" : ""}>
             {completed.map((toDo) => (
-              <ToDo
-                key={toDo.id}
-                id={toDo.id}
-                text={toDo.text}
-                isCompleted={true}
-              />
+              <ToDo key={toDo.id} id={toDo.id} text={toDo.text} isCompleted />
             ))}
           </List>
         </Lists>

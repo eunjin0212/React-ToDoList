@@ -9,7 +9,7 @@ const List = styled.li`
   margin-bottom: 5px;
   justify-content: space-between;
 `;
-const CheckBox = styled.span`
+const Contents = styled.span`
   color: #ff80ab;
   font-size: 20px;
   margin-right: 10px;
@@ -52,7 +52,7 @@ const BackBtn = styled.button`
 `;
 
 // eslint-disable-next-line
-export default ({ text, id, isCompleted }) => {
+export default ({ id, text, isCompleted }) => {
   const [editedToDo, setEditedToDo] = useState(text);
   const dispatch = useDispatch();
 
@@ -69,7 +69,7 @@ export default ({ text, id, isCompleted }) => {
     target[0].disabled = true;
   };
 
-  const edit = (e) => {
+  const editHandler = (e) => {
     const { target } = e;
     switch (target.nodeName) {
       case "BUTTON":
@@ -77,8 +77,9 @@ export default ({ text, id, isCompleted }) => {
         input.disabled = false;
         input.focus();
         break;
+
       case "path":
-        const inputA = target.parentNode.parentNode.previousSibling[0];
+        const inputA = target.parentNode.previousSibling[0];
         inputA.disabled = false;
         inputA.focus();
         break;
@@ -89,9 +90,9 @@ export default ({ text, id, isCompleted }) => {
 
   return (
     <>
-      <List>
+      <List key={id}>
         <form onSubmit={onSubmit}>
-          <CheckBox>-</CheckBox>
+          <Contents>-</Contents>
           {!isCompleted ? (
             <Todo type="text" value={editedToDo} onChange={onChange} disabled />
           ) : (
@@ -105,15 +106,11 @@ export default ({ text, id, isCompleted }) => {
         </form>
         {!isCompleted ? (
           <>
-            <div>
-              <Btn onClick={() => dispatch({ type: EDIT, payload: id })}>
-                Edit
-              </Btn>
-              <Btn onClick={() => dispatch({ type: DEL, payload: id })}>X</Btn>
-              <Btn onClick={() => dispatch({ type: COMPLETE, payload: id })}>
-                V
-              </Btn>
-            </div>
+            <Btn onClick={editHandler}>Edit</Btn>
+            <Btn onClick={() => dispatch({ type: DEL, payload: id })}>X</Btn>
+            <Btn onClick={() => dispatch({ type: COMPLETE, payload: id })}>
+              V
+            </Btn>
           </>
         ) : (
           <>

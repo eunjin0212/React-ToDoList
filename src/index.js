@@ -4,8 +4,10 @@ import App from "./components/ToDoApp";
 import ToDosProvider from "./context";
 
 ReactDOM.render(
-  <ToDosProvider>
-    <App />
-  </ToDosProvider>,
+  <React.StrictMode>
+    <ToDosProvider>
+      <App />
+    </ToDosProvider>
+  </React.StrictMode>,
   document.getElementById("root")
 );
