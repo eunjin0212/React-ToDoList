@@ -10,8 +10,10 @@ const Form = styled.form`
 `;
 const Input = styled.input`
   all: unset;
-  border-bottom: #7f8c8d 1px solid;
   padding: 10px;
+  :focus {
+    border-bottom: #7f8c8d 1px solid;
+  }
 `;
 const Button = styled.button`
   all: unset;
@@ -25,10 +27,9 @@ const Button = styled.button`
   color: #f0f1f3;
   :hover {
     cursor: pointer;
-    //background-color: #ff4081; //click시 클릭 애니매이션 넣기
+    background-color: #ff4081;
   }
   :active {
-    background-color: #ff4081;
     box-shadow: 0px 16px 32px -12px rgba(83, 92, 104, 0.9);
     transform: translateY(4px);
   }
