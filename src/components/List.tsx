@@ -8,12 +8,10 @@ interface lists {
 
 
 const List = ({ title, children }: lists) => (
-  <>
-    <Ul>
-      <H2>{title}</H2>
-      {children}
-    </Ul>
-  </>
+  <Ul>
+    <H2>{title}</H2>
+    {children}
+  </Ul>
 );
 
 export default List;
