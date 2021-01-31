@@ -16,7 +16,7 @@ function App() {
       <Lists>
         <List title={toDos.length !== 0 ? "To Dos" : ""}>
           {toDos.map((toDo:any) => (
-            <ToDo key={toDo.id} id={toDo.id} text={toDo.text} />
+            <ToDo:any key={toDo.id} id={toDo.id} text={toDo.text} />
           ))}
         </List>
         <List title={completed.length !== 0 ? "Completed" : ""}>

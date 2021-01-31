@@ -1,7 +1,19 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-const Container = styled.div`
+const Title = ({ children }: any) => {
+  return (
+    <Wrapper>
+      <Container>
+        <Text>To Do List</Text>
+        {children}
+      </Container>
+    </Wrapper>
+  );
+};
+export default Title;
+
+const Wrapper = styled.div`
   width: 100vw;
   height: 100%;
   background-color: #f0f1f3;
@@ -12,7 +24,7 @@ const Container = styled.div`
   position: absolute;
   top: 0;
 `;
-const Title = styled.div`
+const Container = styled.div`
   width: 90vw;
   display: flex;
   flex-direction: column;
@@ -48,15 +60,3 @@ const Text = styled.span`
     margin-bottom: 30px;
   }
 `;
-
-// eslint-disable-next-line
-export default ({ children }) => {
-  return (
-    <Container>
-      <Title>
-        <Text>To Do List</Text>
-        {children}
-      </Title>
-    </Container>
-  );
-};
