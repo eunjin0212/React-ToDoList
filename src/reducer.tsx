@@ -6,7 +6,12 @@ export const initialState = {
   completed: [],
 };
 
-const reducer = (state: any, action: any):any => {
+interface reducerType {
+  state: any;
+  action: any;
+}
+
+const reducer = ({state, action}:reducerType) => {
   switch (action.type) {
     case ADD:
       return {
