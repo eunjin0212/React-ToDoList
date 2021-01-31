@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "../context";
-import Add from "./Add"; //TodoForm
-import List from "./List"; //List
-import ToDo from "./ToDo"; //ListItem
-import Title from "./Title"; //Wrapper
+import Add from "./Add";
+import List from "./List";
+import ToDo from "./ToDo";
+import Title from "./Title";
 import Progress from "./Progress";
 import styled from "styled-components";
 
