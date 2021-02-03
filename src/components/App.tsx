@@ -6,7 +6,6 @@ import ToDo from "./ToDo";
 import Title from "./Title";
 import Progress from "./Progress";
 import styled from "styled-components";
-
 function App() {
   const { toDos, completed } = useState();
   return (
@@ -15,14 +14,14 @@ function App() {
       <Progress />
       <Lists>
         <List title={toDos.length !== 0 ? "To Dos" : ""}>
-          {toDos.map((toDo:any) => (
-            <ToDo:any key={toDo.id} id={toDo.id} text={toDo.text} />
+          {toDos.map((toDo: any) => (
+            <ToDo key={toDo.id} id={toDo.id} text={toDo.text} isCompleted={false} />
           ))}
         </List>
         <List title={completed.length !== 0 ? "Completed" : ""}>
           {completed.map((toDo: any) => (
             <ToDo key={toDo.id} id={toDo.id} text
-            {toDo.text} isCompleted />
+              {...toDo.text} isCompleted />
           ))}
         </List>
       </Lists>

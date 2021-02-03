@@ -1,9 +1,17 @@
-import React, { createContext, useReducer, useContext } from "react";
+import React, { createContext, useReducer, useContext } from 'react';
 import reducer, { initialState } from "./reducer";
 
-const ToDosContext = createContext();
+export type Todo = {
+  id: number;
+  text: string;
+  done: boolean;
+};
 
-const ToDosProvider = ({ children }) => {
+export type TodosState = Todo[];
+
+const ToDosContext = createContext<TodosState | any>(undefined);
+
+const ToDosProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <ToDosContext.Provider value={{ state, dispatch }}>

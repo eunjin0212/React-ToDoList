@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/ToDoApp";
+import App from "./components/App";
 import ToDosProvider from "./context";
 
 ReactDOM.render(

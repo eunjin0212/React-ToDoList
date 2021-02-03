@@ -3,29 +3,29 @@ import { COMPLETE, UNCOMPLETE, DEL, EDIT } from "../actions";
 import { useDispatch } from "../context";
 import styled from "styled-components";
 
-interface todoType {
+export type todoType = {
   id: number;
-  text: string; 
-  isCompleted: any;
+  text: string;
+  isCompleted: boolean;
 }
-const Todo = ({id, text, isCompleted}:todoType) => {
+const Todo = ({ id, text, isCompleted }: todoType) => {
   const [editedToDo, setEditedToDo] = useState(text);
   const dispatch = useDispatch();
 
-  const onChange = (e:any) => {
+  const onChange = (e: any) => {
     const {
       target: { value },
     } = e;
     setEditedToDo(value);
   };
-  const onSubmit = (e:any) => {
+  const onSubmit = (e: any) => {
     e.preventDefault();
     const { target } = e;
     dispatch({ type: EDIT, payload: target[0].value, id });
     target[0].disabled = true;
   };
 
-  const editHandler = (e:any) => {
+  const handleEdit = (e: any) => {
     const { target } = e;
     switch (target.nodeName) {
       case "BUTTON":
@@ -52,31 +52,31 @@ const Todo = ({id, text, isCompleted}:todoType) => {
           {!isCompleted ? (
             <TodoInput type="text" value={editedToDo} onChange={onChange} disabled />
           ) : (
-            <Completed
-              type="text"
-              value={editedToDo}
-              onChange={onChange}
-              disabled
-            />
-          )}
+              <Completed
+                type="text"
+                value={editedToDo}
+                onChange={onChange}
+                disabled
+              />
+            )}
         </form>
         {!isCompleted ? (
           <>
-            <Btn onClick={editHandler}>Edit</Btn>
+            <Btn onClick={handleEdit}>Edit</Btn>
             <Btn onClick={() => dispatch({ type: DEL, payload: id })}>X</Btn>
             <Btn onClick={() => dispatch({ type: COMPLETE, payload: id })}>
               V
             </Btn>
           </>
         ) : (
-          <>
-            <BackBtn
-              onClick={() => dispatch({ type: UNCOMPLETE, payload: id })}
-            >
-              Back
+            <>
+              <BackBtn
+                onClick={() => dispatch({ type: UNCOMPLETE, payload: id })}
+              >
+                Back
             </BackBtn>
-          </>
-        )}
+            </>
+          )}
       </List>
     </>
   );

@@ -4,31 +4,31 @@ import { useDispatch } from "../context";
 import styled from "styled-components";
 
 const Add = () => {
-    const [newToDo, setNewToDo] = useState<string>("");
-    const dispatch = useDispatch();
+  const [newToDo, setNewToDo] = useState<string>("");
+  const dispatch = useDispatch();
 
-    const handleSubmit = (ev: any) => {
-        ev.preventDefault();
-        dispatch({ type: ADD, payload: newToDo });
-        setNewToDo("");
-    };
-    const handleChange = (ev: any) => {
-        const {
-            target: { value },
-        } = ev;
-        setNewToDo(value);
-    };
-    return (
-      <Form onSubmit= { handleSubmit } >  
-        <Input 
+  const handleSubmit = (ev: any) => {
+    ev.preventDefault();
+    dispatch({ type: ADD, payload: newToDo });
+    setNewToDo("");
+  };
+  const handleChange = (ev: any) => {
+    const {
+      target: { value },
+    } = ev;
+    setNewToDo(value);
+  };
+  return (
+    <Form onSubmit={handleSubmit} >
+      <Input
         type="text"
-        placeholder = "Write to do"
-        value = { newToDo }
-        onChange = { handleChange }
-        autoFocus = { true} />
-         <Button type="button" value = "add" onClick = { handleSubmit } >Add</Button>
-      </Form>
-    );
+        placeholder="Write to do"
+        value={newToDo}
+        onChange={handleChange}
+        autoFocus={true} />
+      <Button type="button" value="add" onClick={handleSubmit} >Add</Button>
+    </Form>
+  );
 };
 export default Add;
 
@@ -37,6 +37,7 @@ const Form = styled.form`
   align-items: flex-end;
   margin-bottom: 20px;
 `;
+
 const Input = styled.input`
   all: unset;
   padding: 10px;
@@ -44,6 +45,7 @@ const Input = styled.input`
     border-bottom: #7f8c8d 1px solid;
   }
 `;
+
 const Button = styled.button`
   all: unset;
   margin-left: 10px;
@@ -65,4 +67,4 @@ const Button = styled.button`
 `;
 
 
-       
+
