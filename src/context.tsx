@@ -9,7 +9,7 @@ export type Todo = {
 
 export type TodosState = Todo[];
 
-const ToDosContext = createContext<TodosState | any>(undefined);
+const ToDosContext = createContext<Array<Todo> | any>(null);
 
 const ToDosProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -20,12 +20,12 @@ const ToDosProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const useDispatch = () => {
+export const useTodosDispatch = () => {
   const { dispatch } = useContext(ToDosContext);
   return dispatch;
 };
 
-export const useState = () => {
+export const useTodosState = () => {
   const { state } = useContext(ToDosContext);
   return state;
 };

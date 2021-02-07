@@ -1,13 +1,15 @@
 import React from "react";
-import { useState } from "../context";
 import Add from "./Add";
 import List from "./List";
 import ToDo from "./ToDo";
 import Title from "./Title";
 import Progress from "./Progress";
 import styled from "styled-components";
+import { useTodosState } from '../context';
+
 function App() {
-  const { toDos, completed } = useState();
+  const { toDos, completed } = useTodosState();
+
   return (
     <Title>
       <Add />

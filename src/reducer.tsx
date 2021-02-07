@@ -7,7 +7,7 @@ export const initialState = {
 };
 
 const reducer = ({ state, action }: any) => {
-  switch (action.type) {
+  switch (action) {
     case ADD:
       return {
         ...state,
@@ -27,7 +27,7 @@ const reducer = ({ state, action }: any) => {
       };
     case UNCOMPLETE:
       const aTarget = state.completed.find(
-        (toDo: { id: any; }) => toDo.id === action.payload
+        (toDo: { id: number; }) => toDo.id === action.payload
       );
       return {
         ...state,

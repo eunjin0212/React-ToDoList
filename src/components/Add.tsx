@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { ADD } from "../actions";
-import { useDispatch } from "../context";
+import { useTodosDispatch } from "../context";
 import styled from "styled-components";
 
 const Add = () => {
   const [newToDo, setNewToDo] = useState<string>("");
-  const dispatch = useDispatch();
+  const dispatch = useTodosDispatch();
 
   const handleSubmit = (ev: any) => {
     ev.preventDefault();

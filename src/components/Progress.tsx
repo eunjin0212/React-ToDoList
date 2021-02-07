@@ -1,9 +1,9 @@
 import React from "react";
-import { useState } from "../context";
+import { useTodosState } from "../context";
 import styled from "styled-components";
 
 const Progress = () => {
-  const { toDos, completed } = useState();
+  const { toDos, completed } = useTodosState();
   const percent = Math.floor(
     (completed.length / (toDos.length + completed.length)) * 100
   );

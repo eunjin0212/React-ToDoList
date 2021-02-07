@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { COMPLETE, UNCOMPLETE, DEL, EDIT } from "../actions";
-import { useDispatch } from "../context";
+import { useTodosDispatch } from "../context";
 import styled from "styled-components";
 
-export type todoType = {
+export interface todoType {
   id: number;
   text: string;
   isCompleted: boolean;
 }
 const Todo = ({ id, text, isCompleted }: todoType) => {
   const [editedToDo, setEditedToDo] = useState(text);
-  const dispatch = useDispatch();
+  const dispatch = useTodosDispatch();
 
   const onChange = (e: any) => {
     const {

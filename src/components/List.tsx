@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 interface lists {
-  title: string;
+  title: any;
   children: any;
 }
 
 
-const List = ({ title, children }: lists) => (
+const List: React.FC<lists> = ({ title, children }) => (
   <Ul>
     <H2>{title}</H2>
     {children}
