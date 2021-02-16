@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 
-const List = (title: any, children: React.ReactNode) => (
+const List = (title: any, children: any) => (
   <Ul>
     <H2>{title}</H2>
     {children}
