@@ -7,14 +7,22 @@ import ToDo from "./ToDo";
 import styled from "styled-components";
 import { State, ITodo } from '../context';
 
-const App = (todoState: State, todo: ITodo): JSX.Element => {
+const App = (todoState: State): Array<ITodo & { isCompleted: boolean }> | JSX.Element => {
   return (
     <Title>
       <Add />
       <Progress />
       <Lists>
-        <List title={todoState.toDos.length !== 0 ? 'To Dos' : ' '}>
-          <ToDo id={todo.id} text={todo.text} isCompleted={false} />
+        <List title={todoState.toDos.length !== 0 ? "To Dos" : ""}>
+          {todoState.toDos.map((toDo: any) => (
+            <ToDo key={toDo.id} id={toDo.id} text={toDo.text} isCompleted={false} />
+          ))}
+        </List>
+        <List title={todoState.completed.length !== 0 ? "Completed" : ""}>
+          {todoState.completed.map((toDo: any) => (
+            <ToDo key={toDo.id} id={toDo.id} text
+              {...toDo.text} isCompleted />
+          ))}
         </List>
       </Lists>
     </Title >

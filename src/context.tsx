@@ -13,7 +13,7 @@ export interface State {
 }
 
 interface ContextValue {
-  state: State;
+  contextState: State;
   dispatch: Dispatch<Action>;
 }
 export const initialState = {
@@ -22,16 +22,16 @@ export const initialState = {
 };
 
 const ToDosContext = createContext<ContextValue>({
-  state: initialState,
+  contextState: initialState,
   dispatch: () => { console.error("called dispatch outside of a ToDosContext Provider") }
 });
 
 
 
 const ToDosProvider = ({ children }: { children: React.ReactNode }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [contextState, dispatch] = useReducer(reducer, initialState);
   return (
-    <ToDosContext.Provider value={{ state, dispatch }}>
+    <ToDosContext.Provider value={{ contextState, dispatch }}>
       {children}
     </ToDosContext.Provider>
   );
@@ -39,8 +39,8 @@ const ToDosProvider = ({ children }: { children: React.ReactNode }) => {
 export default ToDosProvider;
 
 export const useTodosState = (): State => {
-  const { state } = useContext(ToDosContext);
-  return state;
+  const { contextState } = useContext(ToDosContext);
+  return contextState;
 };
 
 export const useTodosDispatch = (): Dispatch<Action> => {

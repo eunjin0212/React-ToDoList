@@ -12,7 +12,7 @@ interface State {
 }
 
 
-const Reducer = (state: State, action: Action): State => {
+const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case ADD:
       return {
@@ -53,4 +53,4 @@ const Reducer = (state: State, action: Action): State => {
   }
 };
 
-export default Reducer;
+export default reducer;
