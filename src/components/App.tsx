@@ -7,9 +7,9 @@ import ToDo from "./ToDo";
 import styled from "styled-components";
 import { State, ITodo } from '../context';
 
-const App = (todoState: State, todo: ITodo): Array<ITodo> & JSX.Element[] => {
+const App = (todoState: State, todo: ITodo): JSX.Element => {
   return (
-    <Title id={todo.id} text={todo.text}>
+    <Title>
       <Add />
       <Progress />
       <Lists>
