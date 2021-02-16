@@ -7,7 +7,7 @@ import ToDo from "./ToDo";
 import styled from "styled-components";
 import { useTodosState } from '../context';
 
-const App = () => {
+function App() {
   const { toDos, completed } = useTodosState();
   console.log(toDos);
   return (

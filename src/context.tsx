@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useContext, Dispatch } from 'react';
+import React, { createContext, useReducer, useContext, Dispatch, ReactElement } from 'react';
 import reducer from "./reducer";
 import { Action } from './actions'
 
@@ -26,7 +26,7 @@ const ToDosContext = createContext<ContextValue>({
   dispatch: () => { console.error("called dispatch outside of a ToDosContext Provider") }
 });
 
-export const ToDosProvider = ({ children }: { children: React.ReactNode }) => {
+export const ToDosProvider = ({ children }: { children: ReactElement }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <ToDosContext.Provider value={{ state, dispatch }}>
