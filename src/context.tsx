@@ -1,15 +1,32 @@
-import React, { createContext, useReducer, useContext } from 'react';
-import reducer, { initialState } from "./reducer";
+import React, { createContext, useReducer, useContext, Dispatch } from 'react';
+import reducer from "./reducer";
+import { Action } from './actions'
 
-export type Todo = {
-  id: number;
+export interface ITodo {
+  id: string;
   text: string;
-  done: boolean;
 };
 
-export type TodosState = Todo[];
+export interface State {
+  toDos: ITodo[];
+  completed: ITodo[];
+}
 
-const ToDosContext = createContext<Array<Todo> | any>(null);
+interface ContextValue {
+  state: State;
+  dispatch: Dispatch<Action>;
+}
+export const initialState = {
+  toDos: [],
+  completed: [],
+};
+
+const ToDosContext = createContext<ContextValue>({
+  state: initialState,
+  dispatch: () => { console.error("called dispatch outside of a ToDosContext Provider") }
+});
+
+
 
 const ToDosProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -19,15 +36,14 @@ const ToDosProvider = ({ children }: { children: React.ReactNode }) => {
     </ToDosContext.Provider>
   );
 };
+export default ToDosProvider;
 
-export const useTodosDispatch = () => {
-  const { dispatch } = useContext(ToDosContext);
-  return dispatch;
-};
-
-export const useTodosState = () => {
+export const useTodosState = (): State => {
   const { state } = useContext(ToDosContext);
   return state;
 };
 
-export default ToDosProvider;
+export const useTodosDispatch = (): Dispatch<Action> => {
+  const { dispatch } = useContext(ToDosContext);
+  return dispatch;
+};

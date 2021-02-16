@@ -5,11 +5,11 @@ import styled from "styled-components";
 
 const Add = () => {
   const [newToDo, setNewToDo] = useState<string>("");
-  const dispatch = useTodosDispatch();
+  const todoDispatch = useTodosDispatch();
 
   const handleSubmit = (ev: any) => {
     ev.preventDefault();
-    dispatch({ type: ADD, payload: newToDo });
+    todoDispatch({ type: ADD, payload: newToDo });
     setNewToDo("");
   };
   const handleChange = (ev: any) => {

@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Progress = () => {
   const { toDos, completed } = useTodosState();
+
   const percent = Math.floor(
     (completed.length / (toDos.length + completed.length)) * 100
   );

@@ -1,13 +1,19 @@
 import { v4 as uuidv4 } from "uuid";
-import { ADD, DEL, COMPLETE, UNCOMPLETE, EDIT } from "./actions";
+import { Action, ADD, DEL, COMPLETE, UNCOMPLETE, EDIT } from './actions';
 
-export const initialState = {
-  toDos: [],
-  completed: [],
-};
+interface Todo {
+  id: string;
+  text: string;
+}
 
-const reducer = ({ state, action }: any) => {
-  switch (action) {
+interface State {
+  toDos: Todo[];
+  completed: Todo[];
+}
+
+
+const Reducer = (state: State, action: Action): State => {
+  switch (action.type) {
     case ADD:
       return {
         ...state,
@@ -16,36 +22,35 @@ const reducer = ({ state, action }: any) => {
     case DEL:
       return {
         ...state,
-        toDos: state.toDos.filter((toDo: { id: number; }) => toDo.id !== action.payload),
+        toDos: state.toDos.filter((toDo) => toDo.id !== action.payload),
       };
     case COMPLETE:
-      const target = state.toDos.find((toDo: { id: number; }) => toDo.id === action.payload);
+      const target = state.toDos.find((toDo) => toDo.id === action.payload);
       return {
         ...state,
-        toDos: state.toDos.filter((toDo: { id: number; }) => toDo.id !== action.payload),
-        completed: [...state.completed, { ...target }],
+        toDos: state.toDos.filter((toDo) => toDo.id !== action.payload),
+        completed: target ? [...state.completed, { ...target }] : state.completed,
       };
     case UNCOMPLETE:
       const aTarget = state.completed.find(
-        (toDo: { id: number; }) => toDo.id === action.payload
+        (toDo) => toDo.id === action.payload
       );
       return {
         ...state,
-        toDos: [...state.toDos, { ...aTarget }],
+        toDos: aTarget ? [...state.toDos, { ...aTarget }] : state.toDos,
         completed: state.completed.filter(
-          (complete: { id: number; }) => complete.id !== action.payload
+          (complete) => complete.id !== action.payload
         ),
       };
     case EDIT:
-      const bTarget = state.toDos.find((toDo: { id: number; }) => toDo.id === action.id);
-      const rest = state.toDos.filter((toDo: { id: number; }) => toDo.id !== action.id);
+      const bTarget = state.toDos.find((toDo) => toDo.id === action.id);
+      const rest = state.toDos.filter((toDo) => toDo.id !== action.id);
       return {
         ...state,
-        toDos: rest.concat({ ...bTarget, text: action.payload }),
+        toDos: bTarget ? rest.concat({ ...bTarget, text: action.payload }) : rest,
       };
-    default:
-      return;
+    default: return state;
   }
 };
 
-export default reducer;
+export default Reducer;

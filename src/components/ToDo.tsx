@@ -4,7 +4,7 @@ import { useTodosDispatch } from "../context";
 import styled from "styled-components";
 
 export interface todoType {
-  id: number;
+  id: string;
   text: string;
   isCompleted: boolean;
 }

@@ -1,12 +1,15 @@
-export type Action =
-    | { type: 'ADD'; add: any }
-    | { tpye: 'DEL'; del: any }
-    | { type: 'COMPLETE'; complete: any }
-    | { type: 'UNCOMPLETE'; uncomplete: any }
-    | { type: 'EDIT'; edit: any }
+export type Action = {
+    type: typeof ADD | typeof DEL | typeof COMPLETE | typeof UNCOMPLETE;
+    payload: string;
+} | {
+    type: typeof EDIT;
+    payload: string;
+    id: string;
+}
 
-export const ADD = "add";
-export const DEL = "del";
-export const COMPLETE = "complete";
-export const UNCOMPLETE = "uncomplete";
-export const EDIT = "edit";
+
+export const ADD = "ADD";
+export const DEL = "DEL";
+export const COMPLETE = "COMPLETE";
+export const UNCOMPLETE = "UNCOMPLETE";
+export const EDIT = "EDIT";
