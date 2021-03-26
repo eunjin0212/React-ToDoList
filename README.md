@@ -1,7 +1,7 @@
 # React ToDoList 📝
-> Update 21. 02. 10
 
 [My ToDo List](https://eunjintodolist.netlify.app/)
+> Update 21. 02. 03
 
 ## 2021.01.30 React 에서 Typescript React로 바꾸기
 
