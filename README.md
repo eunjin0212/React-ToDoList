@@ -1,4 +1,5 @@
 # React ToDoList 📝
+> Update 21. 02. 10
 
 [My ToDo List](https://eunjintodolist.netlify.app/)
 
